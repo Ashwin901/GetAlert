@@ -4,8 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get_alert_app/constants.dart';
 
 class ContactsContent extends StatefulWidget {
-  final userID;
-  ContactsContent({this.userID});
   @override
   _ContactsContentState createState() => _ContactsContentState();
 }
@@ -18,7 +16,6 @@ class _ContactsContentState extends State<ContactsContent> {
   @override
   void initState() {
     // TODO: implement initState
-    userID = widget.userID;
     auth = FirebaseAuth.instance;
     getId();
     super.initState();
@@ -49,7 +46,7 @@ class _ContactsContentState extends State<ContactsContent> {
         return contacts.length == 0
             ? Center(
                 child: Text(
-                  'No contacts added',
+                  'No emergency contacts added',
                   style: textStyle,
                 ),
               )
