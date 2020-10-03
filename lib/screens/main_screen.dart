@@ -72,7 +72,7 @@ class _MainScreenState extends State<MainScreen> {
               ))),
           BottomNavigationBarItem(
               title: Text(
-                "contacts.",
+                "contacts",
                 style: textStyle,
               ),
               icon: Icon(Icons.contacts),
