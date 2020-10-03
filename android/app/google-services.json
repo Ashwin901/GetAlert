@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "388144454043",
+    "firebase_url": "https://getalertapp.firebaseio.com",
+    "project_id": "getalertapp",
+    "storage_bucket": "getalertapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388144454043:android:5df16fd582cdfe2086e93e",
+        "android_client_info": {
+          "package_name": "com.example.get_alert_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388144454043-ovu81t5m2uoedf672aq1se0s2fq584r6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxZSmUbOrNVhfGhOyOPXL6A8ZIE-tVh8Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388144454043-ovu81t5m2uoedf672aq1se0s2fq584r6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
