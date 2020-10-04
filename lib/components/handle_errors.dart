@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_alert_app/components/dialog.dart';
 import 'package:get_alert_app/constants.dart';
 
 void handleErrors(String errorCode, BuildContext context) {
@@ -26,32 +27,6 @@ void handleErrors(String errorCode, BuildContext context) {
       errorMessage = '';
   }
   if (errorMessage.length > 1) {
-    showDialog(
-        context: (context),
-        builder: (context) {
-          return AlertDialog(
-            backgroundColor: Color(0xffffc93c),
-            title: Text(
-              'Something went wrong',
-              style: textStyle,
-            ),
-            content: Text(
-              errorMessage,
-              style: textStyle,
-            ),
-            actions: [
-              RaisedButton(
-                child: Text(
-                  'ok',
-                  style: textStyle.copyWith(color: Color(0xffffc93c)),
-                ),
-                color: Colors.black,
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-              )
-            ],
-          );
-        });
+    dialog('Something went wrong',errorMessage,context);//From dialog.dart class
   }
 }

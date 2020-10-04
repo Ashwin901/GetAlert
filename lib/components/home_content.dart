@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_alert_app/components/dialog.dart';
 import 'package:get_alert_app/constants.dart';
 import 'package:sms/sms.dart';
 
@@ -103,6 +104,7 @@ class _HomeContentState extends State<HomeContent> {
             ),
             onPressed: () {
               sendMessage(messageValue, contacts);
+              dialog('Success', 'Message delivered to your contacts', context);//From dialog.dart
             },
             color: Colors.black,
             shape: RoundedRectangleBorder(
