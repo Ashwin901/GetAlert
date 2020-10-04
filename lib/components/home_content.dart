@@ -16,7 +16,7 @@ class _HomeContentState extends State<HomeContent> {
   TextEditingController messageController;
   var contacts;
 
-  void sendMessage(var message, var contacts) async {
+  Future sendMessage(var message, var contacts) async {
     SmsSender sender = new SmsSender();
     for (int i = 0; i < contacts.length; i++) {
       var address = contacts[i].data()['number'];
@@ -28,8 +28,9 @@ class _HomeContentState extends State<HomeContent> {
           print("SMS is delivered!");
         }
       });
-      sender.sendSms(message);
+       await sender.sendSms(message);
     }
+    messageValue = '';
     messageController.clear();
   }
 
@@ -37,6 +38,7 @@ class _HomeContentState extends State<HomeContent> {
   void initState() {
     // TODO: implement initState
     id = FirebaseAuth.instance.currentUser.uid;
+    messageValue = '';
     messageController = TextEditingController();
     super.initState();
   }
@@ -102,9 +104,11 @@ class _HomeContentState extends State<HomeContent> {
               "send message",
               style: textStyle.copyWith(color: Color(0xffffc93c)),
             ),
-            onPressed: () {
-              sendMessage(messageValue, contacts);
-              dialog('Success', 'Message delivered to your contacts', context);//From dialog.dart
+            onPressed: () async{
+              if(messageValue.length >0) {
+                await sendMessage(messageValue, contacts);
+                dialog('Success', 'Message delivered to your contacts',context); //From dialog.dart
+              }
             },
             color: Colors.black,
             shape: RoundedRectangleBorder(

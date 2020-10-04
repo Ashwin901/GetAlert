@@ -17,56 +17,60 @@ void displayDialog(BuildContext context, String id) {
             height: 300,
             child: Padding(
               padding: EdgeInsets.only(top: 30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  TextField(
-                    onChanged: (value){
-                      name = value;
-                    },
-                    style: textStyle,
-                    autofocus: false,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                        hintStyle: textStyle,
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.white),
+              child: Center(
+                child: SingleChildScrollView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      TextField(
+                        onChanged: (value){
+                          name = value;
+                        },
+                        style: textStyle,
+                        autofocus: false,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                            hintStyle: textStyle,
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black87),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            hintText: "Enter the name"
                         ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black87),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        hintText: "Enter the name"
-                    ),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      TextField(
+                        onChanged: (value){
+                          number = value;
+                        },
+                        keyboardType: TextInputType.number,
+                        style: textStyle,
+                        autofocus: false,
+                        textAlign: TextAlign.center,
+                        decoration: InputDecoration(
+                            hintStyle: textStyle,
+                            filled: true,
+                            fillColor: Colors.white,
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                              borderSide: BorderSide(color: Colors.white),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black87),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            hintText: "Enter the number"),
+                      )],
                   ),
-                  SizedBox(
-                    height: 4,
-                  ),
-                  TextField(
-                    onChanged: (value){
-                      number = value;
-                    },
-                    keyboardType: TextInputType.number,
-                    style: textStyle,
-                    autofocus: false,
-                    textAlign: TextAlign.center,
-                    decoration: InputDecoration(
-                        hintStyle: textStyle,
-                        filled: true,
-                        fillColor: Colors.white,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: BorderSide(color: Colors.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black87),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        hintText: "Enter the number"),
-                  )],
+                ),
               ),
             ),
           ),
