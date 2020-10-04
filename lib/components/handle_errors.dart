@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_alert_app/components/dialog.dart';
-import 'package:get_alert_app/constants.dart';
 
 void handleErrors(String errorCode, BuildContext context) {
   var errorMessage;

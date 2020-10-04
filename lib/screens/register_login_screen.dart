@@ -45,9 +45,7 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
               style: textStyle,
               keyboardType: TextInputType.emailAddress,
               onChanged: (value) {
-                setState(() {
-                  email = value;
-                });
+                email = value;
               },
               controller: emailController,
               textAlign: TextAlign.center,
