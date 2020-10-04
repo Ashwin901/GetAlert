@@ -1,4 +1,4 @@
-import 'package:get_alert_app/screens/register_screen.dart';
+import 'package:get_alert_app/screens/register_login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_alert_app/constants.dart';
 

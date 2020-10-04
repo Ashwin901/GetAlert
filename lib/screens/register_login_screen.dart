@@ -118,9 +118,15 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
             onPressed: () async{
               var user;
               if(title == "register"){
-                 user = await auth.createUserWithEmailAndPassword(email: email, password: password);
+                 user = await auth.createUserWithEmailAndPassword(email: email, password: password).catchError((e){
+                   print(e.code);
+                   handleErrors(e.code, context);
+                 });
               }else{
-                user = await auth.signInWithEmailAndPassword(email: email, password: password);
+                user = await auth.signInWithEmailAndPassword(email: email, password: password).catchError((e){
+                  print(e.code);
+                  handleErrors(e.code,context);
+                });
               }
               emailController.clear();
               passwordController.clear();
@@ -137,6 +143,47 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
           )
         ],
       ),
+    );
+  }
+}
+
+void handleErrors(String errorCode, BuildContext context){
+  var errorMessage;
+  switch(errorCode){
+    case 'user-not-found': errorMessage = "Invalid username or password";
+    break;
+    case 'email-already-exists' : errorMessage = "User already exits";
+    break;
+    case 'invalid-email' : errorMessage ="Please enter a valid email address";
+    break;
+    case 'invalid-password' : errorMessage ="Invalid password";
+    break;
+    case 'weak-password' : errorMessage = 'Password should have more than six characters';
+    break;
+//    case 'wrong-password' : errorMessage = 'Invalid password';
+//    break;
+    default : errorMessage = '';
+  }
+  if(errorMessage.length >1){
+    showDialog(context: (context),
+    builder:(context){
+      return AlertDialog(
+        backgroundColor: Color(0xffffc93c),
+        title: Text('Something went wrong',style: textStyle,),
+        content: Text(errorMessage,style: textStyle,),
+        actions: [
+          RaisedButton(
+            child: Text('ok',style: textStyle.copyWith(
+              color: Color(0xffffc93c)
+            ),),
+            color: Colors.black,
+            onPressed: (){
+              Navigator.pop(context);
+            },
+          )
+        ],
+      );
+    }
     );
   }
 }

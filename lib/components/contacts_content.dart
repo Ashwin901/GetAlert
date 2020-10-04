@@ -21,7 +21,7 @@ class _ContactsContentState extends State<ContactsContent> {
     super.initState();
   }
 
-  void getId(){
+  void getId() {
     currentUser = auth.currentUser;
     id = currentUser.uid;
   }
@@ -29,59 +29,52 @@ class _ContactsContentState extends State<ContactsContent> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: FirebaseFirestore.instance
-          .collection('contacts')
-          .doc(id)
-          .collection('userContacts')
-          .snapshots(),
-      builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        print(id);
-        if (snapshot.data == null) {
-          return Center(
-              child: CircularProgressIndicator(
-            backgroundColor: Colors.black,
-          ));
-        }
-        var contacts = snapshot.data.docs;
-        return contacts.length == 0
-            ? Center(
-                child: Text(
-                  'No emergency contacts added',
-                  style: textStyle,
-                ),
-              )
-            : ListView.builder(
-                itemCount: contacts.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 7,
-                    color: Color(0xffffc93c),
-                    child: ExpansionTile(
-                      childrenPadding: EdgeInsets.only(left: 14),
-                      title: Text(
-                        contacts[index].data()['name'],
-                        style: textStyle.copyWith(
-                          fontSize: 23
+        stream: FirebaseFirestore.instance
+            .collection('contacts')
+            .doc(id)
+            .collection('userContacts')
+            .snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          if (snapshot.data == null) {
+            return Center(
+                child: CircularProgressIndicator(
+              backgroundColor: Colors.black,
+            ));
+          }
+          var contacts = snapshot.data.docs;
+          return contacts.length == 0
+              ? Center(
+                  child: Text(
+                    'No emergency contacts added',
+                    style: textStyle,
+                  ),
+                )
+              : ListView.builder(
+                  itemCount: contacts.length,
+                  itemBuilder: (context, index) {
+                    return Card(
+                      elevation: 7,
+                      color: Color(0xffffc93c),
+                      child: ExpansionTile(
+                        childrenPadding: EdgeInsets.only(left: 14),
+                        title: Text(
+                          contacts[index].data()['name'],
+                          style: textStyle.copyWith(fontSize: 23),
                         ),
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Text(
+                                "number :" + contacts[index].data()['number'],
+                                style: textStyle.copyWith(fontSize: 18),
+                              )
+                            ],
+                          ),
+                        ],
                       ),
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Text(
-                              "number :"+contacts[index].data()['number'],
-                              style: textStyle.copyWith(
-                                fontSize: 18
-                              ),
-                            )
-                          ],
-                        ),
-
-                      ],
-                    ),
-                  );
-                });
-      },
-    );
+                    );
+                  });
+        });
   }
 }

@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get_alert_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -12,22 +11,14 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  FirebaseAuth auth;
   int index;
-  var user;
   var id;
   @override
   void initState() {
     // TODO: implement initState
     index = 0;
-    auth = FirebaseAuth.instance;
-    getId();
+    id = FirebaseAuth.instance.currentUser.uid;
     super.initState();
-  }
-
-  void getId(){
-     user = auth.currentUser;
-     id = user.uid;
   }
 
   @override
@@ -82,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
               )))
         ],
       ),
-      body: index == 0 ? HomeContent() : ContactsContent(),
+      body:index == 0 ? HomeContent() : ContactsContent(),
       floatingActionButton: index == 0
           ? Container()
           : FloatingActionButton(
