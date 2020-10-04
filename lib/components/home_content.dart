@@ -61,14 +61,7 @@ class _HomeContentState extends State<HomeContent> {
 
         contacts = snapshot.data.docs;
 
-    return contacts.length == 0
-        ? Center(
-      child: Text(
-        "Please add contacts to send a message",
-        style: textStyle,
-      ),
-    )
-        : Container(
+    return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -105,9 +98,13 @@ class _HomeContentState extends State<HomeContent> {
               style: textStyle.copyWith(color: Color(0xffffc93c)),
             ),
             onPressed: () async{
-              if(messageValue.length >0) {
-                await sendMessage(messageValue, contacts);
-                dialog('Success', 'Message delivered to your contacts',context); //From dialog.dart
+              if(contacts.length == 0){
+                dialog("Info", "Add contacts to send messages", context);
+              }else{
+                if(messageValue.length >0) {
+                  await sendMessage(messageValue, contacts);
+                  dialog('Success', 'Message delivered to your contacts',context); //From dialog.dart
+                } 
               }
             },
             color: Colors.black,

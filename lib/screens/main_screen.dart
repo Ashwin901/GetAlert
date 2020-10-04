@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_alert_app/components/exit.dart';
 import 'package:get_alert_app/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_alert_app/components/home_content.dart';
@@ -24,68 +25,75 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      backgroundColor: Color(0xffffc93c),
-      appBar: AppBar(
-        backgroundColor: Color(0xffffc93c),
-        leading: Container(),
-        centerTitle: true,
-        title: Text(
-          'GetAlert',
-          style: textStyle,
+    return WillPopScope(
+      onWillPop: (){
+       return onBackPressed(context);
+      },
+      child: SafeArea(
+        child: Scaffold(
+          resizeToAvoidBottomInset: false,
+          backgroundColor: Color(0xffffc93c),
+          appBar: AppBar(
+            backgroundColor: Color(0xffffc93c),
+            leading: Container(),
+            centerTitle: true,
+            title: Text(
+              'GetAlert',
+              style: textStyle,
+            ),
+          ),
+          bottomNavigationBar: BottomNavigationBar(
+            onTap: (item) {
+              if (item == 0) {
+                setState(() {
+                  index = 0;
+                });
+              } else {
+                setState(() {
+                  index = 1;
+                });
+              }
+            },
+            currentIndex: index,
+            backgroundColor: Color(0xffffc93c),
+            items: [
+              BottomNavigationBarItem(
+                  title: Text(
+                    "home",
+                    style: textStyle,
+                  ),
+                  icon: Icon(Icons.home),
+                  activeIcon: (Icon(
+                    Icons.home,
+                    color: Colors.white,
+                  ))),
+              BottomNavigationBarItem(
+                  title: Text(
+                    "contacts",
+                    style: textStyle,
+                  ),
+                  icon: Icon(Icons.contacts),
+                  activeIcon: (Icon(
+                    Icons.contacts,
+                    color: Colors.white,
+                  )))
+            ],
+          ),
+          body:index == 0 ? HomeContent() : ContactsContent(),
+          floatingActionButton: index == 0
+              ? Container()
+              : FloatingActionButton(
+                  backgroundColor: Colors.black,
+                  child: Icon(
+                    Icons.add,
+                    color: Color(0xffffc93c),
+                  ),
+                  onPressed: () {
+                    displayDialog(context,id);
+                  },
+                ),
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (item) {
-          if (item == 0) {
-            setState(() {
-              index = 0;
-            });
-          } else {
-            setState(() {
-              index = 1;
-            });
-          }
-        },
-        currentIndex: index,
-        backgroundColor: Color(0xffffc93c),
-        items: [
-          BottomNavigationBarItem(
-              title: Text(
-                "home",
-                style: textStyle,
-              ),
-              icon: Icon(Icons.home),
-              activeIcon: (Icon(
-                Icons.home,
-                color: Colors.white,
-              ))),
-          BottomNavigationBarItem(
-              title: Text(
-                "contacts",
-                style: textStyle,
-              ),
-              icon: Icon(Icons.contacts),
-              activeIcon: (Icon(
-                Icons.contacts,
-                color: Colors.white,
-              )))
-        ],
-      ),
-      body:index == 0 ? HomeContent() : ContactsContent(),
-      floatingActionButton: index == 0
-          ? Container()
-          : FloatingActionButton(
-              backgroundColor: Colors.black,
-              child: Icon(
-                Icons.add,
-                color: Color(0xffffc93c),
-              ),
-              onPressed: () {
-                displayDialog(context,id);
-              },
-            ),
     );
   }
 }
