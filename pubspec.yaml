@@ -31,7 +31,6 @@ dependencies:
   firebase_auth: ^0.18.1+1
   cloud_firestore: ^0.14.1+2
   firebase_core: ^0.5.0
-  twilio_flutter: ^0.0.5
   sms: ^0.2.4
 
 
