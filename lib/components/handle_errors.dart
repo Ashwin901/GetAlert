@@ -22,6 +22,9 @@ void handleErrors(String errorCode, BuildContext context) {
     case 'wrong-password':
       errorMessage = 'Invalid password';
       break;
+    case 'email-already-in-use':
+      errorMessage = 'Email already in use';
+      break;
     default:
       errorMessage = '';
   }

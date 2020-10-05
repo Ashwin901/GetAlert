@@ -18,6 +18,7 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
   String password;
   FirebaseAuth auth;
   var title;
+  bool check;
   @override
   void initState() {
     // TODO: implement initState
@@ -25,6 +26,7 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
     passwordController = TextEditingController();
     auth = FirebaseAuth.instance;
     title = widget.title;
+    check = false;
     super.initState();
   }
 
@@ -32,7 +34,7 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xffffc93c),
-      body: Center(
+      body: check == true? Center(child: CircularProgressIndicator(backgroundColor: Colors.black,),) : Center(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -105,21 +107,30 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
                 child: Text(title,
                     style: textStyle.copyWith(color: Color(0xffffc93c))),
                 onPressed: () async {
+                  setState(() {
+                    check = true;
+                  });
                   var user;
                   if (title == "register") {
                     user = await auth
                         .createUserWithEmailAndPassword(
                             email: email, password: password)
                         .catchError((e) {
-                      print(e.code);
+                          print(e.code);
+                          setState(() {
+                            check = false;
+                          });
                       handleErrors(e.code, context);
                     });
+
                   } else {
                     user = await auth
                         .signInWithEmailAndPassword(
                             email: email, password: password)
                         .catchError((e) {
-                      print(e.code);
+                     setState(() {
+                       check = false;
+                     });
                       handleErrors(e.code, context);
                     });
                   }
@@ -129,6 +140,9 @@ class _RegisterOrLoginScreenState extends State<RegisterOrLoginScreen> {
                     Navigator.push(context, MaterialPageRoute(builder: (context) {
                       return MainScreen();
                     }));
+                    setState(() {
+                      check = false;
+                    });
                   }
                 },
                 color: title == 'register' ? Colors.black : Colors.white,
