@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_alert_app/components/home_content.dart';
 import 'package:get_alert_app/components/contact_dialog.dart';
 import 'package:get_alert_app/components/contacts_content.dart';
+import 'package:get_alert_app/screens/welcome_screen.dart';
 
 class MainScreen extends StatefulWidget {
   @override
@@ -28,7 +29,6 @@ class _MainScreenState extends State<MainScreen> {
     return WillPopScope(
       onWillPop: (){
        return onBackPressed(context);
-       
       },
       child: SafeArea(
         child: Scaffold(
@@ -36,7 +36,7 @@ class _MainScreenState extends State<MainScreen> {
           backgroundColor: Color(0xffffc93c),
           appBar: AppBar(
             backgroundColor: Color(0xffffc93c),
-            leading: Container(),
+            leading:  popUpButton(context),
             centerTitle: true,
             title: Text(
               'GetAlert',
@@ -100,7 +100,29 @@ class _MainScreenState extends State<MainScreen> {
 }
 
 
-
+Widget popUpButton(BuildContext context){
+  return PopupMenuButton(
+      onSelected: (value) async{
+        await FirebaseAuth.instance.signOut();
+        Navigator.push(context,MaterialPageRoute(
+            builder: (context){
+              return WelcomeScreen();
+            }
+        ));
+      },
+      icon: Icon(Icons.menu,
+        color: Colors.black,),
+      color: Color(0xffffc93c),
+      itemBuilder: (BuildContext context) => <PopupMenuEntry>[
+        PopupMenuItem(
+          value: 'logout',
+          child: Text('logout',
+            style: textStyle,
+          ),
+        )
+      ]
+  );
+}
 
 
 
