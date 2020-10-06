@@ -15,7 +15,7 @@ class _HomeContentState extends State<HomeContent> {
   var id;
   TextEditingController messageController;
   var contacts;
-
+  String defaultMessage;
   Future sendMessage(var message, var contacts) async {
     SmsSender sender = new SmsSender();
     for (int i = 0; i < contacts.length; i++) {
@@ -30,16 +30,20 @@ class _HomeContentState extends State<HomeContent> {
       });
        await sender.sendSms(message);
     }
-    messageValue = '';
-    messageController.clear();
+    setState(() {
+      messageValue = defaultMessage;
+    });
   }
 
   @override
   void initState() {
     // TODO: implement initState
     id = FirebaseAuth.instance.currentUser.uid;
-    messageValue = '';
-    messageController = TextEditingController();
+    defaultMessage = 'Help me';
+    messageController = TextEditingController(
+      text:defaultMessage
+    );
+    messageValue = defaultMessage;
     super.initState();
   }
 
@@ -111,7 +115,10 @@ class _HomeContentState extends State<HomeContent> {
             shape: RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(30.0),
             ),
-          )
+          ),
+          SizedBox(
+            height: 7,
+          ),
         ],
       ),
     );
