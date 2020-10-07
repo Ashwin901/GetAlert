@@ -12,7 +12,16 @@ The registration is done using email and password (Firebase authentication)
 
 ## Packages :
 
+[firebase_auth: ^0.18.1+1](https://pub.dev/packages/firebase_auth)
+Used for registering and logging in users.
 
+[cloud_firestore: ^0.14.1+2](https://pub.dev/packages/cloud_firestore)
+Used for storing the contacts of the users.
+
+[firebase_core: ^0.5.0](https://pub.dev/packages/firebase_core)
+
+[sms: ^0.2.4](https://pub.dev/packages/sms)
+Flutter package which is used to send messages to the saved contacts
 
 ## Modules :
 
@@ -37,5 +46,6 @@ All the contacts stored is user specific.
 
 The errors which might arise during registration or login Ex: weak password , invalid email etc is handled by a handleErrors file, which takes the error code and displays the error to the user.
 
-### Note: The user can logout from his account anytime by pressing a button in the appbar.
+### Note: 
+The user can logout from his account anytime by pressing a button in the appbar.
 
