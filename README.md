@@ -37,12 +37,12 @@ There is no lmits to the number of contacts.
 
 When the user presses the send button the message is sent to all the contacts listed in the contact section.
 
-### Storage :
+## Storage :
 
 All the contact info is stored in firestore using the cloud_firestore package.
 All the contacts stored is user specific.
 
-### Error handling :
+## Error handling :
 
 The errors which might arise during registration or login Ex: weak password , invalid email etc is handled by a handleErrors file, which takes the error code and displays the error to the user.
 
