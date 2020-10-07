@@ -1,6 +1,6 @@
 # GetAlert
 
-This is a flutter application which a user can use to save his emergency contacts ans send a help text to them by pressing a button.
+This is a flutter application which a user can use to save his emergency contacts and send a help text to them by pressing a button.
 
 ### Task ID: Alarming_System_Mobile_App
 
