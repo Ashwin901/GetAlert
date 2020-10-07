@@ -4,7 +4,7 @@ This is a flutter application which a user can use to save his emergency contact
 
 ### Task ID: Alarming_System_Mobile_App
 
-### The apk file us present in the 'apk file' folder
+### The apk file is present in the 'apk file' folder
 
 ## Getting Started
 
