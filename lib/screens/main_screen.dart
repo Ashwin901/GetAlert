@@ -27,8 +27,9 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
 
     return WillPopScope(
+      //WillPopScope is used to handle the back button
       onWillPop: (){
-       return onBackPressed(context);
+       return onBackPressed(context); //This function is present in exit.dart
       },
       child: SafeArea(
         child: Scaffold(
@@ -48,11 +49,11 @@ class _MainScreenState extends State<MainScreen> {
               if (item == 0) {
                 setState(() {
                   index = 0;
-                });
+                });//index =0 is for home content(home_content.dart)
               } else {
                 setState(() {
                   index = 1;
-                });
+                });//index =1 is for contact content(contact_content.dart)
               }
             },
             currentIndex: index,
@@ -90,7 +91,8 @@ class _MainScreenState extends State<MainScreen> {
                     color: Color(0xffffc93c),
                   ),
                   onPressed: () {
-                    displayDialog(context,id);
+                    //This dialog is used to accept contacts when the user is in contact_content(or index=1)
+                    displayDialog(context,id);//This function is in contact_dialog.dart
                   },
                 ),
         ),
@@ -99,7 +101,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 }
 
-
+//This button is in the appbar to handle logout activity
 Widget popUpButton(BuildContext context){
   return PopupMenuButton(
       onSelected: (value) async{

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_alert_app/constants.dart';
 
+//This function is triggered by WillPopScope(handling the back button)
 Future<bool> onBackPressed(BuildContext context) {
   return showDialog(
         context: context,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_alert_app/components/dialog.dart';
 
+//This function handles the errors and send the error code to the dialog.dart file
 void handleErrors(String errorCode, BuildContext context) {
   var errorMessage;
   switch (errorCode) {

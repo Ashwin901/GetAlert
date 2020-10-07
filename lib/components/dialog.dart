@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_alert_app/constants.dart';
 
+//This dialog is used for all alert dialog operations mainly error handling
 void dialog(var title,var message, BuildContext context){
   showDialog(
       context: (context),

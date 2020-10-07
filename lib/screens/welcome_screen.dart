@@ -64,6 +64,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                         )
                       ),
                       onPressed: (){
+                        //Here we send the title to decide if the user wants to register or login
                          Navigator.push(context , MaterialPageRoute(builder: (context){
                            return RegisterOrLoginScreen(title: 'login',);
                          }));

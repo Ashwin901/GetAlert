@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get_alert_app/constants.dart';
 
 class ContactsContent extends StatefulWidget {
@@ -29,6 +30,7 @@ class _ContactsContentState extends State<ContactsContent> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
+      //Using this stream we get the contacts of the specific user and display it.
         stream: FirebaseFirestore.instance
             .collection('contacts')
             .doc(id)
@@ -37,9 +39,10 @@ class _ContactsContentState extends State<ContactsContent> {
         builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.data == null) {
             return Center(
-                child: CircularProgressIndicator(
-              backgroundColor: Colors.black,
-            ));
+              child: SpinKitWave(
+                color: Colors.black,
+              ),
+            );
           }
           var contacts = snapshot.data.docs;
           return contacts.length == 0

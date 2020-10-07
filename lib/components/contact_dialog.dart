@@ -3,8 +3,8 @@ import 'package:get_alert_app/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 void displayDialog(BuildContext context, String id) {
-  var name;
-  var number;
+  var name='';
+  var number='';
   showDialog(
       context: (context),
       builder: (context) {
@@ -85,12 +85,16 @@ void displayDialog(BuildContext context, String id) {
                 ),
               ),
               onPressed: () {
-                FirebaseFirestore.instance.collection('contacts').doc(id).collection('userContacts').add({
-                  'name' : name,
-                  'number' : number
-                });
+                //Here we ensure that the user enters a name and number before pressing the button.
+                if(name.length >0 && number.length >0){
+                  //We add data specific to each user so we specify an id for each user while storing data in fireStore.
+                  FirebaseFirestore.instance.collection('contacts').doc(id).collection('userContacts').add({
+                    'name' : name,
+                    'number' : number
+                  });
+                }
                 Navigator.pop(context);
-              },
+                },
               color: Colors.black,
               shape: RoundedRectangleBorder(
                 borderRadius: new BorderRadius.circular(30.0),

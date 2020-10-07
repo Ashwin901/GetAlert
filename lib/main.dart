@@ -29,6 +29,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //Checks if the user was previously logged in. If yes it navigates to the main screen else it will go to the welcome screen
       home: user == null ? WelcomeScreen() : MainScreen()
     );
   }
